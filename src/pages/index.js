@@ -1,3 +1,3 @@
-import PlanPage from "./plan";
+import PlanPage from './plan';
 
 export { PlanPage };

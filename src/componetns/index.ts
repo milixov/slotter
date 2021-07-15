@@ -1,4 +1,4 @@
-import Company from "./Company";
-import Slots from "./Slots";
+import Company from './Company';
+import Slots from './Slots';
 
 export { Company, Slots };
