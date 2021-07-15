@@ -1,0 +1,5 @@
+.group {
+  position: sticky;
+  position: -webkit-sticky;
+  top: -1px;
+}

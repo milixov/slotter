@@ -1,0 +1,16 @@
+.company {
+  background-color: azure;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.slotList {
+  height: 300px;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.slotList::-webkit-scrollbar {
+  display: none;
+}
