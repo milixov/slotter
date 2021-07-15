@@ -1,8 +1,8 @@
-import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import React from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 // pages
-import { PlanPage } from "pages";
+import { PlanPage } from 'pages';
 
 const Router: React.FC = () => {
   return (
