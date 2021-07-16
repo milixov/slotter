@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 import React, { useContext, useMemo } from 'react';
 import moment from 'moment';
@@ -30,7 +29,7 @@ const Slots: React.FC<ISlots> = (props) => {
     const otherReserved = state.filter(item => item.companyId !== companyId)
 
     return data.map(item => {
-      
+
       let i = 0
       let startTime = moment(item.start_time)
       let endTime = moment(item.end_time)
@@ -38,24 +37,30 @@ const Slots: React.FC<ISlots> = (props) => {
       otherReserved.forEach(reserve => {
         let reserveStartTime = moment(reserve.slot.start_time)
         let reserveEndTime = moment(reserve.slot.end_time)
-        
-        if(startTime.isSameOrAfter(reserveStartTime) && startTime.isBefore(reserveEndTime)) {
+
+        if (startTime.isSameOrAfter(reserveStartTime) && startTime.isBefore(reserveEndTime)) {
           i++
         }
 
-        if(endTime.isAfter(reserveStartTime) && endTime.isBefore(reserveEndTime)) {
+        if (endTime.isAfter(reserveStartTime) && endTime.isBefore(reserveEndTime)) {
           i++
         }
 
-        if(endTime.isAfter(reserveStartTime) && startTime.isBefore(reserveEndTime)) {
+        if (endTime.isAfter(reserveStartTime) && startTime.isBefore(reserveEndTime)) {
           i++
         }
       })
 
-      return {...item, block: i > 0}
+      return { ...item, block: i > 0 }
     })
 
-  }, [state])
+  }, [state, companyId, data])
+
+  const handleSelectItemClick = (slot: ITimeSlotBlocked) => {
+    if (!slot.block) {
+      dispatch({ type: C.SELECT_SLOT, value: { companyId, slot: { start_time: slot.start_time, end_time: slot.end_time } } })
+    }
+  }
 
   return (
     <div>
@@ -63,8 +68,8 @@ const Slots: React.FC<ISlots> = (props) => {
       <div className={styles.daySlots}>
         {blockedData?.map((slot: ITimeSlotBlocked, slotIndex: number) => (
           <p
-            onClick={() => !slot.block && dispatch({ type: C.SELECT_SLOT, value: { companyId, slot: {start_time: slot.start_time, end_time: slot.end_time} } })}
-            className={`${slot.block && styles.blockSlot} ${!slot.block && styles.slot} ${selectedSlot?.slot.start_time === slot.start_time && selectedSlot?.slot.end_time === slot.end_time && styles.slotSelected}`}
+            onClick={() => handleSelectItemClick(slot)}
+            className={`${styles.baseSlot} ${slot.block && styles.blockSlot} ${!slot.block && styles.slot} ${selectedSlot?.slot.start_time === slot.start_time && selectedSlot?.slot.end_time === slot.end_time && styles.slotSelected}`}
             key={`c${companyId}_g${title}s_${slotIndex}`}
           >
             {`${moment(slot.start_time).format('HH:mm')} - ${moment(slot.end_time).format('HH:mm')}`}

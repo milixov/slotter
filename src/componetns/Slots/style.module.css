@@ -1,14 +1,25 @@
 .group {
   position: sticky;
   position: -webkit-sticky;
-  background-color: lightblue;
+  background-color: var(--text-primary);
+  color: var(--text-secondary);
   top: -1px;
+  padding: 8px 16px;
+  border-radius: 4px;
+  margin: 16px;
 }
 
 .daySlots {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 8px;
+  padding: 24px;
+}
+
+.baseSlot {
+  padding: 8px;
+  text-align: center;
+  border-radius: 4px;
 }
 
 .slot {
@@ -16,20 +27,21 @@
 }
 
 .slot:hover {
-  background-color: lightcyan;
+  background-color: var(--color-primary-light);
 }
 
 
 .blockSlot {
   cursor: not-allowed;
-  background-color: lightgray;
+  background-color: var(--color-gray);
 }
 
 .slotSelected {
-  background-color: lightskyblue;
+  background-color: var(--color-primary);
+  color: var(--text-secondary)
 }
 
 .slotSelected:hover {
-  background-color: skyblue;
+  background-color: var(--color-primary-dark);
 }
 
