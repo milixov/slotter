@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 import React, { useContext, useMemo } from 'react';
 import moment from 'moment';
@@ -30,26 +31,31 @@ const Slots: React.FC<ISlots> = (props) => {
 
     return data.map(item => {
       
-      let blockersCount = 0
+      let i = 0
       let startTime = moment(item.start_time)
-      let endTime = moment(item.start_time)
+      let endTime = moment(item.end_time)
 
       otherReserved.forEach(reserve => {
-        const reserveStartTime = moment(reserve.slot.start_time)
-        const reserveEndTime = moment(reserve.slot.end_time)
-        if(startTime.isSameOrAfter(reserveStartTime) && endTime.isBefore(reserveEndTime)) {
-          blockersCount++
+        let reserveStartTime = moment(reserve.slot.start_time)
+        let reserveEndTime = moment(reserve.slot.end_time)
+        
+        if(startTime.isSameOrAfter(reserveStartTime) && startTime.isBefore(reserveEndTime)) {
+          i++
+        }
+
+        if(endTime.isAfter(reserveStartTime) && endTime.isBefore(reserveEndTime)) {
+          i++
+        }
+
+        if(endTime.isAfter(reserveStartTime) && startTime.isBefore(reserveEndTime)) {
+          i++
         }
       })
 
-      if(blockersCount > 0) {
-        console.log(blockersCount)
-      }
-
-      return {...item, block: blockersCount > 0}
+      return {...item, block: i > 0}
     })
 
-  }, [state, data, companyId])
+  }, [state])
 
   return (
     <div>
@@ -57,7 +63,7 @@ const Slots: React.FC<ISlots> = (props) => {
       <div className={styles.daySlots}>
         {blockedData?.map((slot: ITimeSlotBlocked, slotIndex: number) => (
           <p
-            onClick={() => !slot.block && dispatch({ type: C.SELECT_SLOT, value: { companyId, slot } })}
+            onClick={() => !slot.block && dispatch({ type: C.SELECT_SLOT, value: { companyId, slot: {start_time: slot.start_time, end_time: slot.end_time} } })}
             className={`${slot.block && styles.blockSlot} ${!slot.block && styles.slot} ${selectedSlot?.slot.start_time === slot.start_time && selectedSlot?.slot.end_time === slot.end_time && styles.slotSelected}`}
             key={`c${companyId}_g${title}s_${slotIndex}`}
           >
