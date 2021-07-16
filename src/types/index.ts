@@ -18,3 +18,9 @@ export interface ISelectedSlot {
   companyId: number
   slot: ITimeSlot
 }
+
+export interface ITimeSlotBlocked extends ITimeSlot {
+  block: boolean
+}
+
+

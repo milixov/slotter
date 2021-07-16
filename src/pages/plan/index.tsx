@@ -1,7 +1,4 @@
-import React, {useContext} from 'react';
-
-//store
-import {Context} from 'store'
+import React from 'react';
 
 //components
 import { Company, Slots } from 'componetns';
@@ -14,7 +11,6 @@ import styles from './style.module.css';
 
 const PlanPage: React.FC = () => {
   const { data, loading, error } = useSlots();
-  const [state] = useContext(Context)
 
   return (
     <div className={styles.wrapper}>

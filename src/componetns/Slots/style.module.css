@@ -26,3 +26,9 @@
 .slotSelected:hover {
   background-color: skyblue;
 }
+
+
+.blockSlot {
+  cursor: not-allowed;
+  background-color: lightgray;
+}
