@@ -1,3 +1,29 @@
 .container {
-    height: 100px
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    margin: 16px;
+    background-color: var(--color-gray-light);
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.message {
+    text-align: center;
+    width: 100%;
+    text-transform: uppercase;
+}
+
+.slot {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.slot p {
+    font-weight: bold;
+    color: var(--color-primary);
+    margin: 0 8px
 }

@@ -29,7 +29,7 @@ const Company: React.FC<ICompany> = (props) => {
 
   return (
     <section className={styles.company}>
-      <h2>{title}</h2>
+      <h2 className={styles.companyTitle}>{title}</h2>
       <Reserve 
         selectedSlot={selectedSlot}
         onCancelReserve={(value: ISelectedSlot) => dispatch({type: C.SELECT_SLOT, value })}

@@ -2,8 +2,27 @@
   padding: 32px;
 }
 
+.header {
+  padding: 16px 32px;
+  background-color: var(--color-primary);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.header p {
+  font-weight: bold;
+  color: var(--text-secondary);
+
+}
+
+.header h1 {
+  color: var(--text-secondary);
+}
+
 .container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 16px;
 }
+
+

@@ -18,13 +18,13 @@ const Reserve: React.FC<IReserve> = (props) => {
   return (
     <div className={styles.container}>
       {!selectedSlot &&
-        <h3>select a time for reservation</h3>
+        <p className={styles.message}>Select slot for reservation</p>
       }
       {
         selectedSlot && selectedSlot?.slot &&
-          <div>
-            <h3>{`${moment(selectedSlot.slot.start_time).format('dddd D MMM YYYY')}`}</h3>
-            <h3>{`${moment(selectedSlot.slot.start_time).format('HH:mm')}-${moment(selectedSlot.slot.end_time).format('HH:mm')}`}</h3>
+          <div className={styles.slot}>
+            <p>{`${moment(selectedSlot.slot.start_time).format('HH:mm')}-${moment(selectedSlot.slot.end_time).format('HH:mm')} | `}</p>
+            <span>{`${moment(selectedSlot.slot.start_time).format('dddd D MMM YYYY')}`}</span>
           </div>
       }
       {

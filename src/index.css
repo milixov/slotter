@@ -1,11 +1,14 @@
 html {
-  --color-surface: #f6f6f6;
-  --color-primary-light: #E2F4FF;
-  --color-primary: #0066FF;
-  --color-primary-dark: #2341E0;
+  --color-surface: #dddddd;
+  --color-primary-light: #fbe0b6;
+  --color-primary: #e69c2d;
+  --color-primary-dark: #ca9038;
   --color-gray: #D3DAE5;
-  --text-primary: #4F596A;
+  --color-gray-light: #ebeef3;
+  --text-primary: #253543;
   --text-secondary: #FAFAFA;
+  padding: 0;
+  margin: 0;
 }
 
 body {
@@ -14,13 +17,17 @@ body {
     'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  margin: 0;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
-  background-color: azure;
-  padding: 2px 4px;
   border-radius: 4px;
+}
+
+* {
+  color: var(--text-primary)
 }
 
 

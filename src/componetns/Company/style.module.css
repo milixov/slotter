@@ -3,8 +3,13 @@
   border-radius: 8px;
 }
 
+.companyTitle {
+  margin: 16px;
+  text-transform: uppercase;
+}
+
 .slotList {
-  height: 300px;
+  max-height: calc(100vh - 350px);
   overflow-y: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
