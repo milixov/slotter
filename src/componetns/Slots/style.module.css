@@ -14,3 +14,15 @@
 .slot {
   cursor: pointer;
 }
+
+.slot:hover {
+  background-color: lightcyan;
+}
+
+.slotSelected {
+  background-color: lightskyblue;
+}
+
+.slotSelected:hover {
+  background-color: skyblue;
+}

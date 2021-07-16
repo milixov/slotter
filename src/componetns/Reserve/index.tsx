@@ -4,6 +4,9 @@ import moment from 'moment';
 //types
 import { ISelectedSlot } from 'types'
 
+//style
+import styles from './style.module.css'
+
 interface IReserve {
   selectedSlot?: ISelectedSlot | undefined;
   onCancelReserve: any;
@@ -13,7 +16,7 @@ const Reserve: React.FC<IReserve> = (props) => {
   const { selectedSlot, onCancelReserve } = props
 
   return (
-    <div>
+    <div className={styles.container}>
       {!selectedSlot &&
         <h3>select a time for reservation</h3>
       }
