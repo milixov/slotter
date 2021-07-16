@@ -28,7 +28,7 @@ const Reserve: React.FC<IReserve> = (props) => {
         selectedSlot && selectedSlot?.slot &&
         <div className={styles.slot}>
           <p>{`${moment(selectedSlot.slot.start_time).format('HH:mm')}-${moment(selectedSlot.slot.end_time).format('HH:mm')} | `}</p>
-          <span>{`${moment(selectedSlot.slot.start_time).format('dddd D MMM YYYY')}`}</span>
+          <span>{`${moment(selectedSlot.slot.start_time).format('dddd, D MMMM YYYY')}`}</span>
         </div>
       }
       {

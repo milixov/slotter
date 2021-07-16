@@ -64,7 +64,7 @@ const Slots: React.FC<ISlots> = (props) => {
 
   return (
     <div>
-      <h4 className={styles.group}>{moment(title).format('dddd D MMM YYYY')}</h4>
+      <h4 className={styles.group}>{moment(title).format('dddd, D MMM YYYY')}</h4>
       <div className={styles.daySlots}>
         {blockedData?.map((slot: ITimeSlotBlocked, slotIndex: number) => (
           <p
