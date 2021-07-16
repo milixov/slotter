@@ -1,6 +1,9 @@
 import React from 'react';
 import moment from 'moment';
 
+//assets
+import { ReactComponent as TrashIcon } from 'assets/icon/trash.svg';
+
 //types
 import { ISelectedSlot } from 'types'
 
@@ -17,18 +20,22 @@ const Reserve: React.FC<IReserve> = (props) => {
 
   return (
     <div className={styles.container}>
-      {!selectedSlot &&
+      {
+        !selectedSlot &&
         <p className={styles.message}>Select slot for reservation</p>
       }
       {
         selectedSlot && selectedSlot?.slot &&
-          <div className={styles.slot}>
-            <p>{`${moment(selectedSlot.slot.start_time).format('HH:mm')}-${moment(selectedSlot.slot.end_time).format('HH:mm')} | `}</p>
-            <span>{`${moment(selectedSlot.slot.start_time).format('dddd D MMM YYYY')}`}</span>
-          </div>
+        <div className={styles.slot}>
+          <p>{`${moment(selectedSlot.slot.start_time).format('HH:mm')}-${moment(selectedSlot.slot.end_time).format('HH:mm')} | `}</p>
+          <span>{`${moment(selectedSlot.slot.start_time).format('dddd D MMM YYYY')}`}</span>
+        </div>
       }
       {
-        selectedSlot && <button onClick={() => onCancelReserve(selectedSlot)}>cancel reserve</button>
+        selectedSlot &&
+        <button className={styles.trash} onClick={() => onCancelReserve(selectedSlot)}>
+          <TrashIcon />
+        </button>
       }
     </div>
   );

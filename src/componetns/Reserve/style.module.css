@@ -27,3 +27,13 @@
     color: var(--color-primary);
     margin: 0 8px
 }
+
+.trash {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.trash svg path {
+    fill: var(--color-primary)
+}
