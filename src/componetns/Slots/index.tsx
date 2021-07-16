@@ -37,13 +37,17 @@ const Slots: React.FC<ISlots> = (props) => {
       otherReserved.forEach(reserve => {
         const reserveStartTime = moment(reserve.slot.start_time)
         const reserveEndTime = moment(reserve.slot.end_time)
-        if(startTime.isSameOrAfter(reserveStartTime) && endTime.isBefore(reserveEndTime)) {
+        if(startTime.isSameOrAfter(reserveStartTime) && startTime.isBefore(reserveEndTime)) {
           blockersCount++
         }
-        if(endTime.isBetween(reserveStartTime, reserveEndTime)) {
+        if(endTime.isAfter(reserveStartTime) && endTime.isSameOrBefore(reserveEndTime)) {
           blockersCount++
         }
       })
+
+      if(blockersCount > 0) {
+        console.log(blockersCount)
+      }
 
       return {...item, block: blockersCount > 0}
     })
@@ -57,7 +61,7 @@ const Slots: React.FC<ISlots> = (props) => {
         {blockedData?.map((slot: ITimeSlotBlocked, slotIndex: number) => (
           <p
             onClick={() => dispatch({ type: C.SELECT_SLOT, value: { companyId, slot } })}
-            className={`${slot.block && styles.blockSlot} ${!slot.block && styles.slot} ${!slot.block && selectedSlot?.slot.start_time === slot.start_time && selectedSlot?.slot.end_time === slot.end_time && styles.slotSelected}`}
+            className={`${slot.block && styles.blockSlot} ${!slot.block && styles.slot} ${selectedSlot?.slot.start_time === slot.start_time && selectedSlot?.slot.end_time === slot.end_time && styles.slotSelected}`}
             key={`c${companyId}_g${title}s_${slotIndex}`}
           >
             {`${moment(slot.start_time).format('HH:mm')} - ${moment(slot.end_time).format('HH:mm')}`}

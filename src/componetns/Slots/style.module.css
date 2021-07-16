@@ -19,6 +19,12 @@
   background-color: lightcyan;
 }
 
+
+.blockSlot {
+  cursor: not-allowed;
+  background-color: lightgray;
+}
+
 .slotSelected {
   background-color: lightskyblue;
 }
@@ -27,8 +33,3 @@
   background-color: skyblue;
 }
 
-
-.blockSlot {
-  cursor: not-allowed;
-  background-color: lightgray;
-}
