@@ -24,6 +24,7 @@
 
 .slot p {
     font-weight: bold;
+    font-size: large;
     color: var(--color-primary);
     margin: 0 8px
 }
@@ -35,5 +36,5 @@
 }
 
 .trash svg path {
-    fill: var(--color-primary)
+    fill: var(--text-primary)
 }
