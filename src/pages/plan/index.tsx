@@ -1,5 +1,8 @@
 import React from 'react';
 
+//assets
+import LoadingGIF from 'assets/icon/loading.gif'
+
 //components
 import { Company, Slots } from 'componetns';
 
@@ -20,7 +23,7 @@ const PlanPage: React.FC = () => {
       </header>
       <div className={styles.wrapper}>
         {error && <code>{error}</code>}
-        {loading && <p>loading...</p>}
+        {loading && <img src={LoadingGIF} alt="Loading"/>}
         <div className={styles.container}>
           {data &&
             Array.isArray(data) &&
