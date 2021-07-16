@@ -1,12 +1,13 @@
 import React, { createContext, useReducer, Dispatch } from 'react'
 
-import {reducer, TState} from './reducer'
+import { C } from './constants'
+import {reducer, TState, TAction} from './reducer'
 
 interface IStore {
     children: React.ReactNode
 }
 
-export const Context = createContext<[TState, Dispatch<any>]>([[], () => {}]);
+const Context = createContext<[TState, Dispatch<TAction>]>([[], () => {}]);
 
 const Store: React.FC<IStore> = (props) => {
 
@@ -20,4 +21,5 @@ const Store: React.FC<IStore> = (props) => {
     )
 }
 
+export {Context, C}
 export default Store

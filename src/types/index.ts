@@ -13,3 +13,8 @@ export interface IData {
 export interface INormalaizedData extends IData {
   [key: string]: any;
 }
+
+export interface ISelectedSlot {
+  companyId: number
+  slot: ITimeSlot
+}

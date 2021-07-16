@@ -1,30 +1,38 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, {useContext, useMemo} from 'react';
+
+//store
+import {Context, C} from 'store'
 
 //components
 import { Reserve } from 'componetns';
 
 //types
-import {ITimeSlot} from 'types'
+import {ISelectedSlot} from 'types'
 
 //style
 import styles from './style.module.css';
 
 interface ICompany {
+  companyId: number
   title: string;
-  selectedSlot?: ITimeSlot | null;
   children: React.ReactNode;
 }
 
 const Company: React.FC<ICompany> = (props) => {
-  const { title, children, selectedSlot } = props;
+  const { companyId, title, children } = props;
+  const [state, dispatch] = useContext(Context)
+
+  const selectedSlot = useMemo(() => {
+    return state.find(item => item.companyId === companyId)
+  }, [state, companyId])
 
   return (
     <section className={styles.company}>
       <h2>{title}</h2>
       <Reserve 
-        slot={selectedSlot}
-        onCancelReserve={(value: ITimeSlot) => console.log(value)}
+        selectedSlot={selectedSlot}
+        onCancelReserve={(value: ISelectedSlot) => dispatch({type: C.SELECT_SLOT, value })}
       />
       <div className={styles.slotList}>{children}</div>
     </section>

@@ -1,23 +1,31 @@
 import React from 'react';
+import moment from 'moment';
 
 //types
-import {ITimeSlot} from 'types'
+import { ISelectedSlot } from 'types'
 
 interface IReserve {
-  slot?: ITimeSlot | null;
+  selectedSlot?: ISelectedSlot | undefined;
   onCancelReserve: any;
 }
 
 const Reserve: React.FC<IReserve> = (props) => {
-  const {slot, onCancelReserve} = props
+  const { selectedSlot, onCancelReserve } = props
 
   return (
     <div>
-      {
-        slot ? <h3>{`${slot.start_time}-${slot.end_time}`}</h3> : <h3>select a time for reservation</h3>
+      {!selectedSlot &&
+        <h3>select a time for reservation</h3>
       }
       {
-        slot && <button onClick={() => onCancelReserve(slot)}>cancel reserve</button>
+        selectedSlot && selectedSlot?.slot &&
+          <div>
+            <h3>{`${moment(selectedSlot.slot.start_time).format('dddd D MMM YYYY')}`}</h3>
+            <h3>{`${moment(selectedSlot.slot.start_time).format('HH:mm')}-${moment(selectedSlot.slot.end_time).format('HH:mm')}`}</h3>
+          </div>
+      }
+      {
+        selectedSlot && <button onClick={() => onCancelReserve(selectedSlot)}>cancel reserve</button>
       }
     </div>
   );
