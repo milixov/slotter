@@ -1,5 +1,16 @@
 .group {
   position: sticky;
   position: -webkit-sticky;
+  background-color: lightblue;
   top: -1px;
+}
+
+.daySlots {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+}
+
+.slot {
+  cursor: pointer;
 }

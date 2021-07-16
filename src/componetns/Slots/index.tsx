@@ -1,31 +1,35 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
+import moment from 'moment';
 
 //style
 import styles from './style.module.css';
 
 //types
-import { ITimeSlots } from 'types';
+import { ITimeSlot } from 'types';
 
 interface ISlots {
-  id: string;
+  company: number;
   title: string;
-  data: ITimeSlots[];
+  data: ITimeSlot[];
 }
 
 const Slots: React.FC<ISlots> = (props) => {
-  const { id, title, data } = props;
+  const { company, title, data } = props;
 
   return (
     <div>
-      <h4 className={styles.group}>{title}</h4>
-      {data.map((slot: ITimeSlots, slotIndex: number) => (
-        <div key={`${id}_slot_${slotIndex}`}>
-          <p>{slot.start_time}</p>
-          <p>{slot.end_time}</p>
-          <p>______________</p>
-        </div>
-      ))}
+      <h4 className={styles.group}>{moment(title).format('dddd D MMM YYYY')}</h4>
+      <div className={styles.daySlots}>
+        {data.map((slot: ITimeSlot, slotIndex: number) => (
+          <p 
+            className={styles.slot} 
+            key={`c${company}_g${title}s_${slotIndex}`}
+          >
+            {`${moment(slot.start_time).format('HH:mm')} - ${moment(slot.end_time).format('HH:mm')}`}
+          </p>
+        ))}
+      </div>
     </div>
   );
 };

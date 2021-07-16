@@ -1,15 +1,14 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 
 import { IData, INormalaizedData } from 'types';
 
-type TSlotsHook = () => [
-  () => Promise<void>,
+type TSlotsHook = () =>
   {
     data: INormalaizedData[] | undefined;
     loading: boolean;
     error: any | null;
-  },
-];
+  }
+
 
 const useSlots: TSlotsHook = () => {
   const [data, setData] = useState<IData[] | null>(null);
@@ -27,19 +26,23 @@ const useSlots: TSlotsHook = () => {
     setLoading(false);
   };
 
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   const normalizedData: INormalaizedData[] | undefined = useMemo(() => {
     if (data) {
       return data.map((item) => ({
         ...item,
         slots: item.time_slots.reduce((acc: any, curr) => {
-          const group = curr.start_time.split('T')[0];
+          const group = curr.start_time.split('T')[0]
           return { ...acc, [group]: [...(acc[group] || []), curr] };
         }, {}),
       }));
     }
   }, [data]);
 
-  return [fetchData, { data: normalizedData, loading, error }];
+  return { data: normalizedData, loading, error };
 };
 
 export { useSlots };

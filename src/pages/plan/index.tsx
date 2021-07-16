@@ -1,5 +1,7 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect } from 'react';
+import React, {useContext} from 'react';
+
+//store
+import {Context} from 'store'
 
 //components
 import { Company, Slots } from 'componetns';
@@ -11,32 +13,28 @@ import { useSlots } from 'hooks/useDatabase';
 import styles from './style.module.css';
 
 const PlanPage: React.FC = () => {
-  const [fetchData, { data, loading, error }] = useSlots();
-
-  useEffect(() => {
-    fetchData();
-  }, []);
+  const { data, loading, error } = useSlots();
+  const [state, dispatch] = useContext(Context)
 
   return (
     <div className={styles.wrapper}>
+      {JSON.stringify(state)}
       <h1>Plan your day</h1>
-      {error && (
-        <p>
-          Json Server is not running, please enter
-          <code>npm run database</code>
-          in command line
-        </p>
-      )}
+      {error && <code>{error}</code>}
       {loading && <p>loading...</p>}
       <div className={styles.container}>
         {data &&
           Array.isArray(data) &&
           data.map((item) => (
-            <Company key={`company_${item.id}`} title={item.name}>
+            <Company
+              key={`c_${item.id}`}
+              title={item.name}
+              selectedSlot={null}
+            >
               {Object.keys(item.slots).map((group) => (
                 <Slots
-                  key={`company_${item.id}_group_${group}`}
-                  id={`company_${item.id}_group_${group}`}
+                  key={`c_${item.id}_g_${group}`}
+                  company={item.id}
                   title={group}
                   data={item.slots[group]}
                 />
